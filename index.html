@@ -1,0 +1,263 @@
+<html>
+	
+<style>
+	.box { width: 500px; height: 200px; border: 1px solid blue; overflow: hidden }
+</style>
+	
+<h1>overflowText function</h1>
+
+<p>The Javascript function <b>overflowText()</b> reflows text from a DIV to empty DIVs respecting simple character formatting. This page shows a newspaper page layout and random boxes. The function is declarative. You create the relations of the DIVs in HTML code and then run the function to postprocess the page.</p>
+
+
+<h4>Page layout</h4>
+
+<div style="position:relative; width: 600px; height: 500px">
+<div id="6" class="overflow" overflow-into="7" style="width: 580px; height: 200px;
+position: absolute; left: 0; top; 0;">
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+<br><br>Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. <b>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</b>
+<br><br>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus.
+<br><br><b>Nullam quis ante.</b>Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. <i>Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero.</i>Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia.<i>Nam pretium turpis et arcu. Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed aliquam ultrices mauris.</i>
+<br><br>Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Praesent adipiscing. Phasellus ullamcorper ipsum rutrum nunc. Nunc nonummy metus. Vestibulum volutpat pretium libero. Cras id dui. Aenean ut eros et nisl sagittis vestibulum. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede. Sed lectus. Donec mollis hendrerit risus. Phasellus nec sem in justo pellentesque facilisis. Etiam imperdiet imperdiet orci. Nunc nec neque. Phasellus leo dolor, tempus non, auctor et, hendrerit quis, nisi. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Maecenas malesuada. Praesent congue erat at massa. Sed cursus turpis vitae tortor. Donec posuere vulputate arcu. Phasellus accumsan cursus velit. 
+</div>
+<div id='7' class="overflow" overflow-into="8" style="width: 190px; height: 240px; position: absolute; left: 0; top: 216px;"></div>
+<div id='8' class="overflow" overflow-into="9" style="width: 190px; height: 240px; position: absolute; left: 200; top: 216px;"></div>
+<div id='9' class="overflow" overflow-into="10" style="width: 190px; height: 240px; position: absolute; left: 400px; top: 216px;"></div>
+<div id='10' style="width: 190px; height: 450px; position: absolute; left: 600px; top: 0px; overflow:hidden;"></div>
+</div>
+
+<h4>Random DIV boxes</h4>
+
+<div style="position:relative">	
+<div id="1" class="box overflow" overflow-into="2">
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+<br><br>Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. <b>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</b>
+<br><br>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus.
+<br><br><b>Nullam quis ante.</b>Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. <i>Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero.</i>Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia.<i>Nam pretium turpis et arcu. Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed aliquam ultrices mauris.</i>
+<br><br>Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Praesent adipiscing. Phasellus ullamcorper ipsum rutrum nunc. Nunc nonummy metus. Vestibulum volutpat pretium libero. Cras id dui. Aenean ut eros et nisl sagittis vestibulum. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede. Sed lectus. Donec mollis hendrerit risus. Phasellus nec sem in justo pellentesque facilisis. Etiam imperdiet imperdiet orci. Nunc nec neque. Phasellus leo dolor, tempus non, auctor et, hendrerit quis, nisi. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Maecenas malesuada. Praesent congue erat at massa. Sed cursus turpis vitae tortor. Donec posuere vulputate arcu. Phasellus accumsan cursus velit. 
+</div>
+
+<div id='2' class="box overflow" overflow-into="3"></div>	
+<div id='3' class="box overflow" overflow-into="4"></div>
+<div id='4' class="box overflow" overflow-into="5"></div>
+<div id='5' class="box"></div>	
+</div>
+
+<h4>Usage</h4>
+<pre>&lt;div id="1" class="box" overflow-into="2"&gt;Lorem ipsum...&lt;/div&gt;
+&lt;div id="2" class="box" overflow-into="3"&gt;&lt;/div&gt;
+&lt;div id="3" class="box" overflow-into="4"&gt;&lt;/div&gt;
+&lt;div id="4" class="box" overflow-into="5"&gt;&lt;/div&gt;
+&lt;div id="5" class="box" &gt;&lt;/div&gt;
+</pre>
+
+<ul>
+<li>Add class <b>overflow</b> to the DIV nodes.</li>
+<li>Add attribute <b>overflow-into</b> to he node indicating the id of the next DIV</li>
+<li>Fill the first DIV and leave all subsequent DIV empty</li>
+<li>Run the function <b>overflowText()</b> at the end of the page</li>
+<li>Limitation: The algorithm works only on top level tags. You cannot nest tags. So the tags <b>h4, br, b, i</b> are ok, but not <b>p</b> with nested tags or list tags which are always nested.
+</ul>
+
+Source code<br>
+
+<textarea cols=80 rows=10>function overflowText() {
+    var nodes = document.getElementsByClassName("overflow");
+    for (node of nodes) {
+    const id1 = node.id;
+    const id2 = node.getAttribute("overflow-into");
+    if (!id2) continue;
+	
+		const div = document.getElementById(id1);
+		if (div.clientHeight < div.scrollHeight) {
+			let over = div.clientHeight / div.scrollHeight;
+			let inner = div.innerHTML;
+			// rough estimation of breakpoint proportional to text length
+			var breakpoint = Math.floor(inner.length * over);
+			// we try stepwise to go up and down
+			div.innerHTML = inner.substring(0,breakpoint);
+			while (breakpoint <= inner.length && div.clientHeight > div.scrollHeight ) {
+				div.innerHTML = inner.substring(0,breakpoint);
+				breakpoint++;			
+			}
+			breakpoint--;
+			while (breakpoint > 0 && div.clientHeight < div.scrollHeight ) {
+				div.innerHTML = inner.substring(0,breakpoint);
+				breakpoint--;			
+			}
+			breakpoint++;
+			// now we do it clean respecting the subnodes
+			div.innerHTML = inner;
+			let c = div.childNodes.length;
+			var offset = 0;
+			var inner1 = "";
+			var inner2 = "";
+			var first = true;
+			for(let i = 0; i < c; i++) {
+				let ch = div.childNodes[i];
+				let chinner = (ch.nodeType == Node.TEXT_NODE) ? ch.nodeValue : ch.outerHTML;
+				offset += chinner.length ;
+				if (offset < breakpoint) {
+					inner1 += chinner;
+				} else {
+					if (!first) {
+					  inner2 += chinner+ " ";
+					} else {
+					   // access to text is different if it is a text node or a normal node		          
+					  if (ch.nodeType == Node.TEXT_NODE) {
+					        let chinnertext = ch.nodeValue;
+					        let innerbreakpoint = chinnertext.length-offset+breakpoint;
+					        while (chinnertext[innerbreakpoint] != ' ' && chinnertext[innerbreakpoint] != '\n' && innerbreakpoint > 0 ) innerbreakpoint--; 
+					        ch1 = ch.cloneNode();
+					        ch2 = ch.cloneNode();
+					        ch1.innerHTML = chinnertext.substring(0,innerbreakpoint);
+					        ch2.innerHTML = chinnertext.substring(innerbreakpoint); 
+					        inner1 += ch1.innerHTML;
+					        inner2 += ch2.innerHTML
+					   } else {
+                            if (!ch.childNodes.length) { // probably br
+                               inner1 += "";
+					           inner2 += "";
+                            } else {
+					        let chinnertext = ch.childNodes[0].nodeValue;
+					        let innerbreakpoint = chinnertext.length-offset+breakpoint;
+					        while (chinnertext[innerbreakpoint] != ' ' && chinnertext[innerbreakpoint] != '\n' && innerbreakpoint > 0 ) innerbreakpoint--; 
+					        ch1 = ch.cloneNode();
+					        ch2 = ch.cloneNode();
+					        ch1.innerHTML = chinnertext.substring(0,innerbreakpoint);
+					        ch2.innerHTML = chinnertext.substring(innerbreakpoint); 
+					        inner1 += ch1.outerHTML;
+					        inner2 += ch2.outerHTML;
+					        }
+					   }
+					first = false;       
+					} 
+					   
+	
+				}
+			}		
+			div.innerHTML = inner1;
+			const div2 = document.getElementById(id2);
+			
+			// remove starting br tag
+			inner2 = inner2.replace(/^<br\/?>/,"");
+			inner2 = inner2.replace(/^\s/,"");
+			div2.innerHTML = inner2;		
+	
+		}	
+	}
+}</textarea>
+
+<h4>License</h4>
+<p>MIT License version 1.0 25.5.2026 Matthias B&uuml;rcher
+
+
+
+<script>
+
+function overflowText() {
+    var nodes = document.getElementsByClassName("overflow");
+    for (node of nodes) {
+    	const id1 = node.id;
+    	const id2 = node.getAttribute("overflow-into");
+    	if (!id2) continue;   	
+	    const div = document.getElementById(id1);
+		const div2 = document.getElementById(id2);	
+		if (div.clientHeight < div.scrollHeight) {
+			let over = div.clientHeight / div.scrollHeight;
+			let inner = div.innerHTML;
+			// rough estimation of breakpoint proportional to text length
+			var breakpoint = Math.floor(inner.length * over);
+			// we try stepwise to go up and down
+			div.innerHTML = inner.substring(0,breakpoint);
+			while (breakpoint <= inner.length && div.clientHeight > div.scrollHeight ) {
+				div.innerHTML = inner.substring(0,breakpoint);
+				breakpoint++;			
+			}
+			breakpoint--;
+			while (breakpoint > 0 && div.clientHeight < div.scrollHeight ) {
+				div.innerHTML = inner.substring(0,breakpoint);
+				breakpoint--;			
+			}
+			breakpoint++;
+			// now we do it the clean way respecting the subnodes
+			div.innerHTML = inner;
+			let c = div.childNodes.length;
+			var offset = 0;
+			var inner1 = "";
+			var inner2 = "";
+			var first = true;
+			for(let i = 0; i < c; i++) {
+				let ch = div.childNodes[i];
+				let chinner = (ch.nodeType == Node.TEXT_NODE) ? ch.nodeValue : ch.outerHTML;
+				offset += chinner.length ;
+				if (offset < breakpoint) {
+					inner1 += chinner;
+				} else {
+					if (!first) {
+					  inner2 += chinner+ " ";
+					} else {
+					   // access to text is different if it is a text node or a normal node		          
+					  if (ch.nodeType == Node.TEXT_NODE) {
+					        let chinnertext = ch.nodeValue;
+					        let innerbreakpoint = chinnertext.length-offset+breakpoint;
+					        while (chinnertext[innerbreakpoint] != ' ' && chinnertext[innerbreakpoint] != '\n' && innerbreakpoint > 0 ) innerbreakpoint--; 
+					        ch1 = ch.cloneNode();
+					        ch2 = ch.cloneNode();
+					        ch1.innerHTML = chinnertext.substring(0,innerbreakpoint);
+					        ch2.innerHTML = chinnertext.substring(innerbreakpoint); 
+					        inner1 += ch1.innerHTML;
+					        inner2 += ch2.innerHTML
+					   } else {
+                            if (!ch.childNodes.length) { // probably br
+                               inner1 += "";
+					           inner2 += "";
+                            } else {
+					        let chinnertext = ch.childNodes[0].nodeValue;
+					        let innerbreakpoint = chinnertext.length-offset+breakpoint;
+					        while (chinnertext[innerbreakpoint] != ' ' && chinnertext[innerbreakpoint] != '\n' && innerbreakpoint > 0 ) innerbreakpoint--; 
+					        ch1 = ch.cloneNode();
+					        ch2 = ch.cloneNode();
+					        ch1.innerHTML = chinnertext.substring(0,innerbreakpoint);
+					        ch2.innerHTML = chinnertext.substring(innerbreakpoint); 
+					        inner1 += ch1.outerHTML;
+					        inner2 += ch2.outerHTML;
+					        }
+					   }
+					first = false;       
+					} 
+					   
+	
+				}
+			}		
+			div.innerHTML = inner1;
+			// remove starting br tag
+			inner2 = inner2.replace(/^<br\/?>/,"");
+			inner2 = inner2.replace(/^\s/,"");
+			div2.innerHTML = inner2;		
+	
+		}	
+	}
+}
+
+
+function shuffleDIV() {
+ var nodes = document.getElementsByClassName("box");
+ var l = 50;
+ for (node of nodes) {
+    node.style.position = "relative";
+    node.style.left = l;
+    node.style.width = (400 + Math.random()*200); 
+    l += 50;
+    let h = (100 + Math.random()*200);
+    node.style.height = h; 
+ }
+
+}
+shuffleDIV();
+overflowText();
+   
+</script>
+	
+	
+</html>
